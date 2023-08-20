@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,20 +10,22 @@
   <body>
     <form action="/">
       <div class="fieldset">
+
         <table class="tab-group">
           <tr>
-            <td id="login-tab" class="tab tab-active">Log In</td>
-            <td id="signup-tab" class="tab" >Sign Up</td>
+            <td id="signup-tab" class="tab">ثبت نام</td>
+            <td id="login-tab" class="tab tab-active">ورود</td>
           </tr>
         </table>
-        <div class="input"><input type="tel" />phone</div>
 
-        <div class="input"><input type="password" />pass</div>
+        <div class="input"><input type="tel" placeholder="شماره موبایل"/></div>
 
-        <div class="input"><input type="checkbox" />remember me!</div>
+        <div class="input"><input type="password" placeholder="رمز عبور" /></div>
+
+        <div class="input "><input class="checkbox" type="checkbox" checked value="" />مرا به خاطر بسپار!</div>
 
         <div>
-          <button>Login</button>
+          <button class="login-btn">ورود</button>
         </div>
       </div>
     </form>

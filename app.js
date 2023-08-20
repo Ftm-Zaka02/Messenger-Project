@@ -11,4 +11,8 @@ logintab.addEventListener("mouseover",function(e){
     signuptab.classList.remove("tab-active")
     logintab.classList.add("tab-active")
 })
-
+signuptab.addEventListener("mouseleave",function(e){
+    e.preventDefault();
+    signuptab.classList.remove("tab-active")
+    logintab.classList.add("tab-active")
+})

@@ -1,0 +1,30 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  /* direction: rtl; */
+}
+.fieldset {
+  border: 5px solid black;
+  width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tab-group {
+  width: 90%;
+  height: 10%;
+  margin: 20px auto;
+  padding: 0px;
+  background-color: gray;
+}
+.tab {
+  width: 45%;
+  text-align: center;
+}
+.tab-active{
+  background-color: lightgreen;
+}
+

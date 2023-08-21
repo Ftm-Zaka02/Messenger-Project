@@ -15,17 +15,6 @@ logintab.addEventListener("mouseover", function (e) {
   logintab.classList.add("tab-active");
   logintab.style.transition = "all 1s";
 });
-signuptab.addEventListener("mouseleave", function (e) {
-  e.preventDefault();
-  signuptab.classList.remove("tab-active");
-  logintab.classList.add("tab-active");
-  logintab.style.transition = "all 1s";
-});
-  logintab.addEventListener("mouseover", function (e) {
-    e.preventDefault();
-    signuptab.classList.remove("tab-active");
-    logintab.classList.add("tab-active");
-  });
   signuptab.addEventListener("mouseleave", function (e) {
     e.preventDefault();
     signuptab.classList.remove("tab-active");

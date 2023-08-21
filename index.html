@@ -10,19 +10,34 @@
   <body>
     <form action="/">
       <div class="fieldset">
-
         <table class="tab-group">
           <tr>
-            <td id="signup-tab" class="tab">ثبت نام</td>
+            <td id="signup-tab" class="tab">
+              <a href="SignUp/index.html" target="_blank">ثبت نام </a>
+            </td>
             <td id="login-tab" class="tab tab-active">ورود</td>
           </tr>
         </table>
 
-        <div class="input"><input type="tel" placeholder="شماره موبایل"/></div>
+        <div class="input">
+          <input maxlength="11" type="tel" placeholder="شماره موبایل" />
+        </div>
 
-        <div class="input"><input type="password" placeholder="رمز عبور" /></div>
+        <div class="input">
+          <input type="password" placeholder="رمز عبور" />
+        </div>
 
-        <div class="input "><input class="checkbox" type="checkbox" checked/><span style="color: #a0b3b0;font-weight: bold;">مرا به خاطر بسپار</span></div>
+        <div class="input">
+          <input class="checkbox" type="checkbox" checked /><span
+            style="
+              font-size: 20px;
+              font-family: BMitra;
+              color: #a0b3b0;
+              font-weight: bold;
+            "
+            >مرا به خاطر بسپار</span
+          >
+        </div>
 
         <div>
           <button class="login-btn">ورود</button>

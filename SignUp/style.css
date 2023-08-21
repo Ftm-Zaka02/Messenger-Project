@@ -5,11 +5,11 @@
 }
 @font-face {
   font-family: BTitr;
-  src: url(fonts/STITRBD.TTF);
+  src: url(../Fonts/STITRBD.TTF);
 }
 @font-face {
   font-family: BMitra;
-  src: url(fonts/SMITRABD.TTF);
+  src: url(../Fonts/SMITRABD.TTF)
 }
 body {
   direction: rtl;
@@ -58,13 +58,7 @@ input {
   color: rgba(255, 255, 255, 0.5);
   font-size: 20px;
 }
-.checkbox {
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
-  color: white;
-}
-.login-btn {
+.signup-btn {
   display: block;
   width: 90%;
   height: 50px;

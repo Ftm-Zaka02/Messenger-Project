@@ -22,11 +22,12 @@ body {
   margin-right: auto;
   margin-top: 8%;
   background: rgba(19, 35, 47, 0.9);
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
 .tab-group {
   width: 90%;
   height: 10%;
-  margin: 20px auto 80px;
+  margin: 45px auto 60px;
   padding: 0px;
   background: rgba(160, 179, 176, 0.25);
   color: #a0b3b0;
@@ -82,4 +83,5 @@ a {
 input:focus {
   outline: 0;
   border-color: #1ab188;
+  transition: all 0.3s 0.6s;
 }

@@ -15,7 +15,7 @@ body {
   direction: rtl;
 }
 .fieldset {
-  border: 1px solid black;
+  border: 1px solid #13232f;
   width: 500px;
   height: 500px;
   margin-left: auto;
@@ -23,7 +23,7 @@ body {
   background: rgba(19, 35, 47, 0.9);
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   position: relative;
-  top: 140px;
+  top: 100px;
 }
 .tab-group {
   width: 90%;
@@ -40,9 +40,13 @@ body {
   font-family: BTitr;
   font-size: 20px;
 }
+.tab-hover {
+  background: rgb(23, 155, 119);
+  color: rgb(234, 245, 239);
+}
 .tab-active {
   background: rgb(26, 177, 137);
-  color: #ffffff;
+  color: rgb(223, 251, 252);
 }
 .input {
   width: 90%;
@@ -59,6 +63,9 @@ input {
   color: rgba(255, 255, 255, 0.5);
   font-size: 20px;
 }
+input::placeholder {
+  color: #a0b3b0;
+}
 .checkbox {
   width: 20px;
   height: 20px;
@@ -71,11 +78,12 @@ input {
   height: 50px;
   margin: 30px auto;
   background: #1ab188;
-  color: white;
+  color: rgb(255,255,252);
   border: 0;
   font-weight: bold;
   font-family: BTitr;
   font-size: 30px;
+  cursor: pointer;
 }
 a {
   text-decoration: none;

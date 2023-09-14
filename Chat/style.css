@@ -6,10 +6,6 @@
   font-family: BMitra;
   src: url(../Fonts/SMITRABD.TTF);
 }
-@font-face {
-  font-family: icons;
-  src: url(../Fonts/icons.ttf);
-}
 body {
   background: rgb(248, 248, 248);
 }
@@ -33,11 +29,10 @@ body {
   border: 1px solid rgb(230, 230, 230);
 }
 .header {
-  background-color: rgba(160, 179, 176, 0.25);
+  background-color: rgb(71, 87, 93);
   grid-area: header;
   display: flex;
   align-items: center;
-  font-family: icons;
   font-size: 30px;
   flex-direction: row;
   justify-content: space-between;
@@ -159,36 +154,12 @@ input {
   font-family: BMitra;
   font-size: 25px;
 }
-.icon-header::before {
-  content: "\e982";
-  text-align: center;
-  padding: 0 10px;
-  cursor: pointer;
-}
-.icon-header::after {
-  content: "\e905";
-  text-align: center;
-  padding: 0 10px;
-  cursor: pointer;
-}
 
-.icon-title::after {
-  content: "\e973";
-  text-align: center;
-  padding: 0 10px;
-  cursor: pointer;
-}
-.icon-title::before {
-  content: "\e982";
-  text-align: center;
-  padding: 0 10px;
-  cursor: pointer;
-}
 .title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: BTitr, icons;
+  font-family: BTitr;
   font-size: 30px;
   margin: 10px 20px 30px 20px;
   color: #a0b3b0;
@@ -201,7 +172,9 @@ input {
 .send-div {
   width: 85%;
   height: 70%;
-  font-family: BMitra, icons;
+  display: flex;
+  flex-direction: row;
+  font-family: BMitra;
   margin: 0 auto;
   background-color: rgb(71, 87, 93);
   font-size: 25px;
@@ -215,12 +188,6 @@ input {
   margin: 2px 15px;
   color: black;
 }
-/* .icon-send::after {
-  content: "\e949";
-  text-align: center;
-  padding: 0 10px;
-  cursor: pointer;
-} */
 .menu-item:hover:not(.title),
 label:hover {
   cursor: pointer;
@@ -231,6 +198,7 @@ label:hover {
 .active-item {
   background-color: #1ab188;
   color: white;
+  
 }
 input:focus {
   outline: none;
@@ -285,7 +253,20 @@ input:focus {
   background-color: #1ab188;
   border-radius: 50%;
 }
-hr{
+hr {
   width: 85%;
   opacity: 0.5;
+}
+.btn-send{
+  margin: 4px;
+}
+.btn-icon {
+  background-color: inherit;
+  width: 60px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  background-position: center;
 }

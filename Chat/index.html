@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="normalizer.css" />
+    <link rel="stylesheet" href="../normalizer.css" />
   </head>
   <body>
  <div class="main">
@@ -14,8 +14,8 @@
           <img class="person-image" src="images/person.png"/>مخاطب 2
         </div>
         <div>
-          <button class="btn-icon" style="background-image: url(icon/edit-icon.png);"></button>
-          <button class="btn-icon" style="background-image: url(icon/refresh-icon.png);"></button>
+          <button onclick="location.href='Add&Edit/Edit.html'" class="btn-icon" style="background-image: url(images/edit-icon.png)"></button>
+          <button class="btn-icon" style="background-image: url(images/refresh-icon.png);"></button>
         </div>
       </header>
 
@@ -23,17 +23,15 @@
         <div class="menu-item title">
           پیام رسان فراوین
           <div>
-            <button class="btn-icon" style="background-image: url(icon/search-icon.png);"></button>
-            <button class="btn-icon" style="background-image: url(icon/add-icon.png);"></button>
-            <button class="btn-icon" style="background-image: url(icon/refresh-icon.png);"></button>
+            <button id="search-btn" class="btn-icon" style="background-image: url(images/search-icon.png);"></button>
+            <button onclick="location.href='Add&Edit/Add.html'" class="btn-icon" style="background-image: url(images/add-icon.png);"></button>
+            <button class="btn-icon" style="background-image: url(images/refresh-icon.png);"></button>
           </div>
         </div>
-        <br />
-        <div class="search-div">
-          <input class="input-search" type="text" placeholder="Search" />
-          <button class="search"></button>
-        </div><hr>
-        <div class="menu-item-div">
+        <br>
+        <div id="search-div" class="search-div">
+        </div>
+        <div class="menu-item-div" id="menu-item-div">
           <div class="menu-item">
             <img class="person-image" src="images/person.png" />
             <label>مخاطب 1</label>
@@ -72,14 +70,15 @@
         <div class="message-part-you">سلام خوبی؟</div>
         <div class="message-part-me">قربانت</div>
         <div class="message-part-me">چه خبرا چیکار میکنی؟!</div>
-        <div class="message-part-you">سلامتی رهبر</div>
+        <div class="message-part-you">روی پروژم کار میکنم!</div>
       </div>
       <footer class="footer grid-item">
         <div class="send-div">
           <input class="send" type="text" placeholder="پیام..." />
-          <button class="btn-icon btn-send" style="background-image: url(icon/sanjagh-icon.png);"></button>
-          <button class="btn-icon btn-send" style="background-image: url(icon/send-icon.png);"></button>
+          <button class="btn-icon btn-send" style="background-image: url(images/sanjagh-icon.png);"></button>
+          <button class="btn-icon btn-send" style="background-image: url(images/send-icon.png);"></button>
         </div>
       </footer>
+      <script src="app.js"></script>
   </body>
 </html>

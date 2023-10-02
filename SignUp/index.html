@@ -9,7 +9,7 @@
     <link rel="icon" href="icon.jpg" />
   </head>
   <body>
-    <form action="../Chat/index.html">
+    <form id="theForm">
       <div class="fieldset">
         <table class="tab-group">
           <tr>
@@ -22,28 +22,33 @@
           </tr>
         </table>
 
-        <div class="input">
-          <input autofocus
+        <div class="input" id="phDiv">
+          <input
+            autofocus
+            id="phInput"
             inputmode="tel"
-            maxlength="11"
             type="tel"
-            placeholder="شماره موبایل"
+            placeholder="شماره موبایل                                          9195698742  (98+) "
           />
         </div>
 
-        <div class="input">
-          <input type="password" placeholder="رمز عبور" />
+        <div class="input" id="passDiv">
+          <input id="passInput" type="password" placeholder="رمز عبور" />
         </div>
 
-        <div class="input">
-          <input type="password" placeholder="تکرار رمز عبور" />
+        <div class="input" id="rePassDiv">
+          <input
+            id="rePassInput"
+            type="password"
+            placeholder=" تکرار رمز عبور"
+          />
         </div>
 
         <div>
-          <button class="signup-btn">ثبت نام</button>
+          <button id="btn" class="signup-btn">ثبت نام</button>
         </div>
       </div>
     </form>
-    <script src="../app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

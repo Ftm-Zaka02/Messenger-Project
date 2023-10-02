@@ -2,7 +2,6 @@ const searchBtn = document.getElementById("search-btn");
 const searchDiv = document.getElementById("search-div");
 const searchInput = document.createElement("input");
 const searchCircle = document.createElement("button");
-
 //! search input & search function
 searchInput.placeholder = "Search";
 searchInput.classList.add("input-search");
@@ -33,9 +32,16 @@ sendBtn.addEventListener("click", function () {
   newMessage = document.createElement("div");
   newMessage.classList.add("message-part-me");
   textMessage = document.createTextNode(inputMessage.value);
-  if (textMessage != null && textContent != " ") {
+  if (textMessage != null && textMessage != " ") {
     newMessage.appendChild(textMessage);
     messagePart.appendChild(newMessage);
   }
   inputMessage.value = "";
 });
+
+
+
+let addBtn=document.getElementById("add-btn")
+addBtn.addEventListener("click",function(){
+  
+})

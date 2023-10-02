@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form action="Chat/index.html">
+    <form id="theForm">
       <div class="fieldset">
         <table class="tab-group">
           <tr>
@@ -21,22 +21,22 @@
           </tr>
         </table>
 
-        <div class="input">
+        <div id="phDiv" class="input">
           <input
-          autofocus
+            id="phInput"
+            autofocus
             inputmode="tel"
-            maxlength="11"
             type="tel"
-            placeholder="شماره موبایل"
+            placeholder="شماره موبایل                                          9195698742  (98+) "
           />
         </div>
 
-        <div class="input">
-          <input type="password" placeholder="رمز عبور" />
+        <div id="passDiv" class="input">
+          <input id="passInput" type="password" placeholder="رمز عبور" />
         </div>
 
         <div class="input">
-          <input class="checkbox" type="checkbox" checked /><span
+          <input id="rCheck" class="checkbox" type="checkbox" checked /><span
             style="
               font-size: 20px;
               font-family: BMitra;
@@ -47,7 +47,7 @@
           >
         </div>
         <div>
-          <button class="login-btn" type="submit">ورود</button>
+          <button id="btn" class="login-btn" type="submit" >ورود</button>
         </div>
       </div>
     </form>

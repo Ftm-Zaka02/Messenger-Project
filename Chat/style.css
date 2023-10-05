@@ -8,6 +8,7 @@
 }
 body {
   background: rgb(248, 248, 248);
+  position: relative;
 }
 .main {
   width: 100%;
@@ -106,6 +107,7 @@ body {
   border-radius: 10px;
   background: #1ab188;
   box-shadow: inset 0 0 1px 1px #5c6670;
+  min-height: max-content;
 }
 .menu-item {
   align-items: center;
@@ -262,8 +264,8 @@ input {
   padding: 7px 0;
 }
 .send-div {
-  width: 85%;
-  height: 70%;
+  width: 88%;
+  height: 85%;
   display: flex;
   flex-direction: row;
   font-family: BMitra;
@@ -273,8 +275,8 @@ input {
   border-radius: 12px;
 }
 .send {
-  width: 88%;
-  height: 88%;
+  width: 93%;
+  height: 85%;
   background-color: inherit;
   border: 0;
   margin: 2px 15px;
@@ -283,6 +285,14 @@ input {
 input:focus {
   outline: none;
 }
-.btn-send {
-  margin: 4px;
+#selection {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-family: sans-serif;
+}
+#picker {
+  position: absolute;
+  bottom: 90px;
+  left: 70px;
 }

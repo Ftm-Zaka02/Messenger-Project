@@ -200,7 +200,8 @@ input {
   position: relative;
 }
 .message-part-me::before,
-.message-part-you::before {
+.message-part-you::before,
+.voiceBox::before {
   position: absolute;
   top: 26px;
   display: block;
@@ -213,7 +214,8 @@ input {
   left: -3px;
   background-color: #a0b3b0;
 }
-.message-part-me::before {
+.message-part-me::before,
+.voiceBox::before {
   right: -3px;
   background-color: #1ab188;
 }
@@ -295,4 +297,13 @@ input:focus {
   position: absolute;
   bottom: 90px;
   left: 70px;
+}
+.voiceBox {
+  background-color: #1ab188;
+  width: 150px;
+  height: 60px;
+  margin-bottom: 8px;
+  padding: 5px 4px 5px 3px;
+  border-radius: 5px;
+  position: relative;
 }

@@ -38,9 +38,16 @@ inputMessage.addEventListener("keydown", function () {
   mcpBtn.style.display = "none";
   sendBtn.style.display = "block";
 });
-
 sendBtn.addEventListener("click", function () {
-  text = inputMessage.value;
+  send();
+});
+inputMessage.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    send();
+  }
+});
+function send() {
+  let text = inputMessage.value;
   if (text.length > 0) {
     snjBtn.style.display = "block";
     mcpBtn.style.display = "block";
@@ -51,17 +58,15 @@ sendBtn.addEventListener("click", function () {
   snjBtn.style.display = "block";
   mcpBtn.style.display = "block";
   sendBtn.style.display = "none";
-});
-
+}
 function creatMessageDiv(text) {
-  textMessage = document.createTextNode(text);
-  newMessage = document.createElement("div");
+
+  const textMessage = document.createTextNode(text);
+  const newMessage = document.createElement("div");
   newMessage.classList.add("message-part-me");
   newMessage.appendChild(textMessage);
   messagePart.appendChild(newMessage);
 }
-
-//
 
 //! change message with contants
 let contacts = document.getElementsByClassName("contacts")[0];
@@ -164,10 +169,8 @@ closeBtn[1].addEventListener("click", () => {
   body.removeChild(addForm);
 });
 
-const editBtn = document.getElementById("edit-btn");
-const editBox=document.getElementById("editBox")
-editBtn.addEventListener("click", () => {
-  editForm.style.visibility = "visible";
+function showBox(box) {
+  box.style.visibility = "visible";
   let width = 100;
   let height = 100;
   let timer = setInterval(function () {
@@ -176,26 +179,20 @@ editBtn.addEventListener("click", () => {
     } else {
       width += 50;
       height += 50;
-      editBox.style.width = width + "px";
-      editBox.style.height = height + "px";
+      box.style.width = width + "px";
+      box.style.height = height + "px";
     }
   }, 25);
+}
+
+const editBtn = document.getElementById("edit-btn");
+const editBox = document.getElementById("editBox");
+editBtn.addEventListener("click", () => {
+  showBox(editBox);
 });
 
 const addBtn = document.getElementById("add-btn");
-const addBox=document.getElementById("addBox")
+const addBox = document.getElementById("addBox");
 addBtn.addEventListener("click", () => {
-  addForm.style.visibility = "visible";
-  let width = 100;
-  let height = 100;
-  let timer = setInterval(function () {
-    if (width > 350) {
-      clearInterval(timer);
-    } else {
-      width += 50;
-      height += 50;
-      addBox.style.width = width + "px";
-      addBox.style.height = height + "px";
-    }
-  }, 25);
+  showBox(addBox);
 });

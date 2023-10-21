@@ -11,14 +11,22 @@
     <script src="inline.js"></script> -->
   </head>
   <body id="body">
- <div class="main">
+    <div class="main">
       <header class="header grid-item">
         <div class="person-chat">
-          <img class="person-image" src="images/person.png"/>مخاطب 2
+          <img class="person-image" src="images/person.png" />
+          <label id="currentContant"> مخاطب 2 </label>
         </div>
         <div>
-          <button id="edit-btn" class="btn-icon" style="background-image: url(images/edit-icon.png)"></button>
-          <button class="btn-icon" style="background-image: url(images/refresh-icon.png);"></button>
+          <button
+            id="edit-btn"
+            class="btn-icon"
+            style="background-image: url(images/edit-icon.png)"
+          ></button>
+          <button
+            class="btn-icon"
+            style="background-image: url(images/refresh-icon.png)"
+          ></button>
         </div>
       </header>
 
@@ -26,28 +34,38 @@
         <div class="title">
           پیام رسان فراوین
           <div>
-            <button id="search-btn" class="btn-icon" style="background-image: url(images/search-icon.png);"></button>
-            <button id="add-btn" class="btn-icon" style="background-image: url(images/add-icon.png);"></button>
-            <button class="btn-icon" style="background-image: url(images/refresh-icon.png);"></button>
+            <button
+              id="search-btn"
+              class="btn-icon"
+              style="background-image: url(images/search-icon.png)"
+            ></button>
+            <button
+              id="add-btn"
+              class="btn-icon"
+              style="background-image: url(images/add-icon.png)"
+            ></button>
+            <button
+              class="btn-icon"
+              style="background-image: url(images/refresh-icon.png)"
+            ></button>
           </div>
         </div>
-        <br>
-        <div id="search-div" class="search-div">
-        </div>
+        <br />
+        <div id="search-div" class="search-div"></div>
         <div class="menu-item-div contacts" id="menu-item-div">
-          <div class="menu-item " >
+          <div class="menu-item">
             <img class="person-image" src="images/person.png" />
             <label id="0">مخاطب 1</label>
           </div>
-          <div class="menu-item active-item" >
+          <div class="menu-item active-item">
             <img class="person-image" src="images/person.png" />
             <label id="1">مخاطب 2</label>
           </div>
-          <div class="menu-item" >
+          <div class="menu-item">
             <img class="person-image" src="images/person.png" />
             <label id="2">مخاطب 3</label>
           </div>
-          <div class="menu-item" >
+          <div class="menu-item">
             <img class="person-image" src="images/person.png" />
             <label id="3">مخاطب 4</label>
           </div>
@@ -71,12 +89,12 @@
         </div>
         <div class="message-part-me">سلام</div>
         <div class="message-part-you">سلام خوبی؟</div>
-        <div class="message-part-me">قربانت</div> 
+        <div class="message-part-me">قربانت</div>
         <!-- <div class="message-part-me">چه خبرا چیکار میکنی؟!</div> -->
-         <div class="message-part-you">روی پروژم کار میکنم!</div>
+        <div class="message-part-you">روی پروژم کار میکنم!</div>
       </div>
       <div id="picker"></div>
-<!-- edit box -->
+      <!-- edit box -->
       <form id="editForm">
         <div id="editBox" class="fieldset">
           <button class="close"></button>
@@ -88,48 +106,95 @@
               placeholder="شماره موبایل"
             />
           </div>
-  
+
           <div class="input">
-            <input type="text" placeholder="نام و نام خانوادگی" />
+            <input
+              id="editNameInput"
+              type="text"
+              placeholder="نام و نام خانوادگی"
+            />
           </div>
-  
+
           <div>
             <button class="save-btn">ذخیره</button>
           </div>
         </div>
       </form>
-<!-- add box -->
-<form id="addForm">
-  <div id="addBox" class="fieldset">
-    <button class="close"></button>
-    <div class="input">
-      <input
-        inputmode="tel"
-        maxlength="11"
-        type="tel"
-        placeholder="شماره موبایل"
-      />
-    </div>
+      <!-- add box -->
+      <form id="addForm">
+        <div id="addBox" class="fieldset">
+          <button class="close"></button>
+          <div class="input">
+            <input
+              inputmode="tel"
+              maxlength="11"
+              type="tel"
+              placeholder="شماره موبایل"
+            />
+          </div>
 
-    <div class="input">
-      <input type="text" placeholder="نام و نام خانوادگی" />
-    </div>
+          <div class="input">
+            <input type="text" placeholder="نام و نام خانوادگی" />
+          </div>
 
-    <div>
-      <button class="add-btn">افزودن مخاطب</button>
-    </div>
-  </div>
-</form>
+          <div>
+            <button class="add-btn">افزودن مخاطب</button>
+          </div>
+        </div>
+      </form>
 
       <footer class="footer grid-item">
         <div class="send-div">
-          <button id="send-btn" class="btn-icon" style="display: none; background-image: url(images/send-icon.png); width:55px;height: 55px; margin: 7px 6px 0px 0px;"></button>
-          <button id="micro-btn"  class="btn-icon" style="background-image: url(images/microStop-icon.png); width:60px;height: 60px; margin: 3px 6px 0px 0px;"></button>
-          <button id="sanjagh-btn"  class="btn-icon" style="background-image: url(images/sanjagh-icon.png); width:52px;height: 52px; margin: 8px 0px;"></button>
-          <input name="input-message" class="send" type="text" placeholder="پیام..." />
-          <button id="emoji-btn" class="btn-icon" style="background-image: url(images/emoji-icon.png); width:60px;height: 55px;  margin: 4px 0px 4px 6px;"></button>
+          <button
+            id="send-btn"
+            class="btn-icon"
+            style="
+              display: none;
+              background-image: url(images/send-icon.png);
+              width: 55px;
+              height: 55px;
+              margin: 7px 6px 0px 0px;
+            "
+          ></button>
+          <button
+            id="micro-btn"
+            class="btn-icon"
+            style="
+              background-image: url(images/microStop-icon.png);
+              width: 60px;
+              height: 60px;
+              margin: 3px 6px 0px 0px;
+            "
+          ></button>
+          <button
+            id="sanjagh-btn"
+            class="btn-icon"
+            style="
+              background-image: url(images/sanjagh-icon.png);
+              width: 52px;
+              height: 52px;
+              margin: 8px 0px;
+            "
+          ></button>
+          <input
+            name="input-message"
+            class="send"
+            type="text"
+            placeholder="پیام..."
+          />
+          <button
+            id="emoji-btn"
+            class="btn-icon"
+            style="
+              background-image: url(images/emoji-icon.png);
+              width: 60px;
+              height: 55px;
+              margin: 4px 0px 4px 6px;
+            "
+          ></button>
         </div>
       </footer>
       <script src="app.js" type="module"></script>
+    </div>
   </body>
 </html>

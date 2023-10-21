@@ -1,4 +1,5 @@
-import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
+// import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
+const body = document.getElementById("body");
 const searchBtn = document.getElementById("search-btn");
 const searchDiv = document.getElementById("search-div");
 const searchInput = document.createElement("input");
@@ -103,51 +104,98 @@ function uploadMessage(num) {
 }
 
 //!emoji
-const emjBtn = document.getElementById("emoji-btn");
-const { createPicker } = window.picmo;
-inputMessage = document.getElementsByName("input-message")[0];
-const rootElement = document.querySelector("#picker");
-emjBtn.addEventListener("click", function () {
-  rootElement.style = "display:block";
-  const picker = createPicker({
-    rootElement,
-  });
-  picker.addEventListener("emoji:select", (selection) => {
-    inputMessage.value += selection.emoji;
-  });
-});
-inputMessage.addEventListener("mousedown", function () {
-  rootElement.style = "display:none";
-});
+// const emjBtn = document.getElementById("emoji-btn");
+// const { createPicker } = window.picmo;
+// inputMessage = document.getElementsByName("input-message")[0];
+// const rootElement = document.querySelector("#picker");
+// emjBtn.addEventListener("click", function () {
+//   rootElement.style = "display:block";
+//   const picker = createPicker({
+//     rootElement,
+//   });
+//   picker.addEventListener("emoji:select", (selection) => {
+//     inputMessage.value += selection.emoji;
+//   });
+// });
+// inputMessage.addEventListener("mousedown", function () {
+//   rootElement.style = "display:none";
+// });
 
 //!voice
-let microBtn = document.getElementById("micro-btn");
-let container = document.createElement("div");
-container.classList.add("voiceBox");
-microBtn.addEventListener("mousedown", function () {
-  const start = async () => {
-    let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    let recorder = new RecordRTCPromisesHandler(stream, {
-      type: "audio",
-    });
-    recorder.startRecording();
-    microBtn.addEventListener("mouseup", async () => {
-      await recorder.stopRecording();
-      let blob = await recorder.getBlob();
-      const recordedUrl = URL.createObjectURL(blob);
-      const wavesurfer = WaveSurfer.create({
-        container: container,
-        waveColor: "#fff",
-        progressColor: "#fff",
-        height: 60,
-        url: recordedUrl,
-      });
+// let microBtn = document.getElementById("micro-btn");
+// let container = document.createElement("div");
+// container.classList.add("voiceBox");
+// microBtn.addEventListener("mousedown", function () {
+//   const start = async () => {
+//     let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+//     let recorder = new RecordRTCPromisesHandler(stream, {
+//       type: "audio",
+//     });
+//     recorder.startRecording();
+//     microBtn.addEventListener("mouseup", async () => {
+//       await recorder.stopRecording();
+//       let blob = await recorder.getBlob();
+//       const recordedUrl = URL.createObjectURL(blob);
+//       const wavesurfer = WaveSurfer.create({
+//         container: container,
+//         waveColor: "#fff",
+//         progressColor: "#fff",
+//         height: 60,
+//         url: recordedUrl,
+//       });
 
-      wavesurfer.on("interaction", () => {
-        wavesurfer.play();
-      });
-      messagePart.appendChild(container);
-    });
-  };
-  start();
+//       wavesurfer.on("interaction", () => {
+//         wavesurfer.play();
+//       });
+//       messagePart.appendChild(container);
+//     });
+//   };
+//   start();
+// });
+
+//! edit and add box
+let editForm = document.getElementById("editForm");
+let addForm = document.getElementById("addForm");
+const closeBtn = document.getElementsByClassName("close");
+closeBtn[0].addEventListener("click", () => {
+  body.removeChild(editForm);
+});
+closeBtn[1].addEventListener("click", () => {
+  body.removeChild(addForm);
+});
+
+const editBtn = document.getElementById("edit-btn");
+const editBox=document.getElementById("editBox")
+editBtn.addEventListener("click", () => {
+  editForm.style.visibility = "visible";
+  let width = 100;
+  let height = 100;
+  let timer = setInterval(function () {
+    if (width > 350) {
+      clearInterval(timer);
+    } else {
+      width += 50;
+      height += 50;
+      editBox.style.width = width + "px";
+      editBox.style.height = height + "px";
+    }
+  }, 25);
+});
+
+const addBtn = document.getElementById("add-btn");
+const addBox=document.getElementById("addBox")
+addBtn.addEventListener("click", () => {
+  addForm.style.visibility = "visible";
+  let width = 100;
+  let height = 100;
+  let timer = setInterval(function () {
+    if (width > 350) {
+      clearInterval(timer);
+    } else {
+      width += 50;
+      height += 50;
+      addBox.style.width = width + "px";
+      addBox.style.height = height + "px";
+    }
+  }, 25);
 });

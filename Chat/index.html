@@ -6,9 +6,9 @@
     <title>Chat</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../normalizer.css" />
-    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
-    <script src="inline.js"></script>
+    <script src="inline.js"></script> -->
   </head>
   <body id="body">
  <div class="main">
@@ -17,7 +17,7 @@
           <img class="person-image" src="images/person.png"/>مخاطب 2
         </div>
         <div>
-          <button onclick="location.href='Add&Edit/Edit.html'" class="btn-icon" style="background-image: url(images/edit-icon.png)"></button>
+          <button id="edit-btn" class="btn-icon" style="background-image: url(images/edit-icon.png)"></button>
           <button class="btn-icon" style="background-image: url(images/refresh-icon.png);"></button>
         </div>
       </header>
@@ -27,7 +27,7 @@
           پیام رسان فراوین
           <div>
             <button id="search-btn" class="btn-icon" style="background-image: url(images/search-icon.png);"></button>
-            <button onclick="location.href='Add&Edit/Add.html'" class="btn-icon" style="background-image: url(images/add-icon.png);"></button>
+            <button id="add-btn" class="btn-icon" style="background-image: url(images/add-icon.png);"></button>
             <button class="btn-icon" style="background-image: url(images/refresh-icon.png);"></button>
           </div>
         </div>
@@ -76,6 +76,51 @@
          <div class="message-part-you">روی پروژم کار میکنم!</div>
       </div>
       <div id="picker"></div>
+<!-- edit box -->
+      <form id="editForm">
+        <div id="editBox" class="fieldset">
+          <button class="close"></button>
+          <div class="input">
+            <input
+              inputmode="tel"
+              maxlength="11"
+              type="tel"
+              placeholder="شماره موبایل"
+            />
+          </div>
+  
+          <div class="input">
+            <input type="text" placeholder="نام و نام خانوادگی" />
+          </div>
+  
+          <div>
+            <button class="save-btn">ذخیره</button>
+          </div>
+        </div>
+      </form>
+<!-- add box -->
+<form id="addForm">
+  <div id="addBox" class="fieldset">
+    <button class="close"></button>
+    <div class="input">
+      <input
+        inputmode="tel"
+        maxlength="11"
+        type="tel"
+        placeholder="شماره موبایل"
+      />
+    </div>
+
+    <div class="input">
+      <input type="text" placeholder="نام و نام خانوادگی" />
+    </div>
+
+    <div>
+      <button class="add-btn">افزودن مخاطب</button>
+    </div>
+  </div>
+</form>
+
       <footer class="footer grid-item">
         <div class="send-div">
           <button id="send-btn" class="btn-icon" style="display: none; background-image: url(images/send-icon.png); width:55px;height: 55px; margin: 7px 6px 0px 0px;"></button>

@@ -109,25 +109,24 @@ function uploadMessage(num) {
 
 //!emoji
 const emjBtn = document.getElementById("emoji-btn");
-// const { createPicker } = window.picmo;
-// inputMessage = document.getElementsByName("input-message")[0];
-// const rootElement = document.querySelector("#picker");
-// emjBtn.addEventListener("click", function () {
-//   rootElement.style = "display:block";
-//   const picker = createPicker({
-//     rootElement,
-//   });
-//   picker.addEventListener("emoji:select", (selection) => {
-//     inputMessage.value += selection.emoji;
-//   });
-// });
-// inputMessage.addEventListener("mousedown", function () {
-//   rootElement.style = "display:none";
-// });
+const { createPicker } = window.picmo;
+inputMessage = document.getElementsByName("input-message")[0];
+const rootElement = document.querySelector("#picker");
+emjBtn.addEventListener("click", function () {
+  rootElement.style = "display:block";
+  const picker = createPicker({
+    rootElement,
+  });
+  picker.addEventListener("emoji:select", (selection) => {
+    inputMessage.value += selection.emoji;
+  });
+});
+inputMessage.addEventListener("mousedown", function () {
+  rootElement.style = "display:none";
+});
 
 //!voice
 let microBtn = document.getElementById("micro-btn");
-
 microBtn.addEventListener("mousedown", function () {
   let voiceBox = document.createElement("div");
   let container = document.createElement("div");
@@ -154,6 +153,7 @@ microBtn.addEventListener("mousedown", function () {
   text.classList.add("text");
   text.innerHTML = "دکمه را رها کنید تا ضبط پایان یابد!";
   const timer = document.createElement("label");
+  let realTime;
   timer.classList.add("timer");
   sendDiv.appendChild(redMicro);
   sendDiv.appendChild(text);
@@ -161,7 +161,7 @@ microBtn.addEventListener("mousedown", function () {
   timer.innerHTML = "00:00";
   let secound = 0;
   let min = 0;
-  const timerFunc = setInterval(() => {
+  const recordTimer = setInterval(() => {
     secound++;
     timer.innerHTML = `0${min}:0${secound}`;
     if (secound > 9) {
@@ -172,8 +172,8 @@ microBtn.addEventListener("mousedown", function () {
       min++;
       timer.innerHTML = `0${min}:${secound}`;
     }
+    realTime = `0${min}:0${secound}`;
   }, 1000);
-
   const start = async () => {
     let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     let recorder = new RecordRTCPromisesHandler(stream, {
@@ -181,7 +181,7 @@ microBtn.addEventListener("mousedown", function () {
     });
     recorder.startRecording();
     microBtn.addEventListener("mouseup", async () => {
-      clearInterval(timerFunc);
+      clearInterval(recordTimer);
       sendDiv.removeChild(redMicro);
       sendDiv.removeChild(text);
       sendDiv.removeChild(timer);
@@ -200,25 +200,46 @@ microBtn.addEventListener("mousedown", function () {
         url: recordedUrl,
         cursorColor: "#a0b3b0",
       });
-
-      wavesurfer.addEventListener("finish", () => {
-        voiceBox.removeChild(pauseIcon);
-        voiceBox.appendChild(playIcon);
-      });
+      let playTimer;
+      secound = 0;
+      min = 0;
       playIcon.addEventListener("click", () => {
+        if (secound == 0) {
+          timer.innerHTML = `00:00`;
+        }
         wavesurfer.play();
         voiceBox.removeChild(playIcon);
         voiceBox.appendChild(pauseIcon);
+        playTimer = setInterval(() => {
+          secound++;
+          timer.innerHTML = `0${min}:0${secound}`;
+          if (secound > 9) {
+            timer.innerHTML = `0${min}:${secound}`;
+          }
+          if (secound > 60) {
+            secound = 0;
+            min++;
+            timer.innerHTML = `0${min}:${secound}`;
+          }
+        }, 1000);
       });
       pauseIcon.addEventListener("click", () => {
         wavesurfer.pause();
         voiceBox.removeChild(pauseIcon);
         voiceBox.appendChild(playIcon);
+        clearInterval(playTimer);
       });
+      wavesurfer.addEventListener("finish", () => {
+        voiceBox.removeChild(pauseIcon);
+        voiceBox.appendChild(playIcon);
+        clearInterval(playTimer);
+        timer.innerHTML = realTime;
+      });
+      console.log(secound);
       voiceBox.appendChild(container);
-      timer.classList.add("time")
+      timer.classList.add("time");
       voiceBox.appendChild(timer);
-      messagePart.appendChild(voiceBox);
+      if (timer.innerHTML != "00:00") messagePart.appendChild(voiceBox);
     });
   };
   start();

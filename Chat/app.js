@@ -1,4 +1,4 @@
-// import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
+import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
 const body = document.getElementById("body");
 const searchBtn = document.getElementById("search-btn");
 const searchDiv = document.getElementById("search-div");
@@ -60,7 +60,6 @@ function send() {
   sendBtn.style.display = "none";
 }
 function creatMessageDiv(text) {
-
   const textMessage = document.createTextNode(text);
   const newMessage = document.createElement("div");
   newMessage.classList.add("message-part-me");
@@ -109,7 +108,7 @@ function uploadMessage(num) {
 }
 
 //!emoji
-// const emjBtn = document.getElementById("emoji-btn");
+const emjBtn = document.getElementById("emoji-btn");
 // const { createPicker } = window.picmo;
 // inputMessage = document.getElementsByName("input-message")[0];
 // const rootElement = document.querySelector("#picker");
@@ -127,36 +126,103 @@ function uploadMessage(num) {
 // });
 
 //!voice
-// let microBtn = document.getElementById("micro-btn");
-// let container = document.createElement("div");
-// container.classList.add("voiceBox");
-// microBtn.addEventListener("mousedown", function () {
-//   const start = async () => {
-//     let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-//     let recorder = new RecordRTCPromisesHandler(stream, {
-//       type: "audio",
-//     });
-//     recorder.startRecording();
-//     microBtn.addEventListener("mouseup", async () => {
-//       await recorder.stopRecording();
-//       let blob = await recorder.getBlob();
-//       const recordedUrl = URL.createObjectURL(blob);
-//       const wavesurfer = WaveSurfer.create({
-//         container: container,
-//         waveColor: "#fff",
-//         progressColor: "#fff",
-//         height: 60,
-//         url: recordedUrl,
-//       });
+let microBtn = document.getElementById("micro-btn");
 
-//       wavesurfer.on("interaction", () => {
-//         wavesurfer.play();
-//       });
-//       messagePart.appendChild(container);
-//     });
-//   };
-//   start();
-// });
+microBtn.addEventListener("mousedown", function () {
+  let voiceBox = document.createElement("div");
+  let container = document.createElement("div");
+  container.classList.add("wave");
+  voiceBox.classList.add("voiceBox");
+  let playIcon = document.createElement("img");
+  let pauseIcon = document.createElement("img");
+  playIcon.src = "images/play.png";
+  pauseIcon.src = "images/Pause.png";
+  playIcon.classList.add("play-icon");
+  pauseIcon.classList.add("pauseIcon");
+  voiceBox.appendChild(playIcon);
+
+  //?
+  const sendDiv = document.getElementsByClassName("send-div")[0];
+  const sendInput = document.getElementById("send-input");
+  sendDiv.removeChild(emjBtn);
+  sendDiv.removeChild(sendInput);
+  sendDiv.removeChild(snjBtn);
+  const text = document.createElement("label");
+  const redMicro = document.createElement("img");
+  redMicro.classList.add("red-micro");
+  redMicro.src = "images/micro-red.png";
+  text.classList.add("text");
+  text.innerHTML = "دکمه را رها کنید تا ضبط پایان یابد!";
+  const timer = document.createElement("label");
+  timer.classList.add("timer");
+  sendDiv.appendChild(redMicro);
+  sendDiv.appendChild(text);
+  sendDiv.appendChild(timer);
+  timer.innerHTML = "00:00";
+  let secound = 0;
+  let min = 0;
+  const timerFunc = setInterval(() => {
+    secound++;
+    timer.innerHTML = `0${min}:0${secound}`;
+    if (secound > 9) {
+      timer.innerHTML = `0${min}:${secound}`;
+    }
+    if (secound > 60) {
+      secound = 0;
+      min++;
+      timer.innerHTML = `0${min}:${secound}`;
+    }
+  }, 1000);
+
+  const start = async () => {
+    let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    let recorder = new RecordRTCPromisesHandler(stream, {
+      type: "audio",
+    });
+    recorder.startRecording();
+    microBtn.addEventListener("mouseup", async () => {
+      clearInterval(timerFunc);
+      sendDiv.removeChild(redMicro);
+      sendDiv.removeChild(text);
+      sendDiv.removeChild(timer);
+      sendDiv.appendChild(snjBtn);
+      sendDiv.appendChild(sendInput);
+      sendDiv.appendChild(emjBtn);
+      await recorder.stopRecording();
+      let blob = await recorder.getBlob();
+      const recordedUrl = URL.createObjectURL(blob);
+      const wavesurfer = WaveSurfer.create({
+        container: container,
+        waveColor: "#fff",
+        progressColor: "#fff",
+        height: 60,
+        width: 120,
+        url: recordedUrl,
+        cursorColor: "#a0b3b0",
+      });
+
+      wavesurfer.addEventListener("finish", () => {
+        voiceBox.removeChild(pauseIcon);
+        voiceBox.appendChild(playIcon);
+      });
+      playIcon.addEventListener("click", () => {
+        wavesurfer.play();
+        voiceBox.removeChild(playIcon);
+        voiceBox.appendChild(pauseIcon);
+      });
+      pauseIcon.addEventListener("click", () => {
+        wavesurfer.pause();
+        voiceBox.removeChild(pauseIcon);
+        voiceBox.appendChild(playIcon);
+      });
+      voiceBox.appendChild(container);
+      timer.classList.add("time")
+      voiceBox.appendChild(timer);
+      messagePart.appendChild(voiceBox);
+    });
+  };
+  start();
+});
 
 //! edit and add box
 let editForm = document.getElementById("editForm");

@@ -275,6 +275,7 @@ input {
   background-color: rgb(71, 87, 93);
   font-size: 25px;
   border-radius: 12px;
+  position: relative;
 }
 .send {
   width: 93%;
@@ -300,16 +301,50 @@ input:focus {
 }
 .voiceBox {
   background-color: #1ab188;
-  width: 150px;
+  width: 170px;
   height: 60px;
   margin-bottom: 8px;
   padding: 5px 4px 5px 3px;
   border-radius: 5px;
   position: relative;
 }
-
-
-
+.play-icon,
+.pauseIcon {
+  width: 40px;
+  height: 40px;
+  margin: 8px auto 10px 4px;
+  cursor: pointer;
+}
+.wave {
+  float: left;
+}
+.timer {
+  align-self: center;
+  color: #a0b3b0;
+  font-size: 20px;
+  position: absolute;
+  left: 50px;
+}
+.time{
+  color: #a0b3b0;
+  font-size: 12px;
+  position: absolute;
+  bottom: 6px;
+  right: 50px;
+}
+.text {
+  font-family: BMitra;
+  color: #a0b3b0;
+  font-size: 15px;
+  align-self: center;
+}
+.red-micro{
+  width: 20px;
+  height: 25px;
+  position: absolute;
+  left: 20px;
+  align-self: center;
+}
 /* edit & add box */
 
 .fieldset {
@@ -386,7 +421,8 @@ input:focus {
   border: 0;
   background-color: inherit;
 }
-#editForm,#addForm {
+#editForm,
+#addForm {
   visibility: hidden;
   position: absolute;
   top: 100px;

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up Form</title>
-    <link rel="stylesheet" href="normalizer.css" />
+    <link rel="stylesheet" href="../normalizer.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="icon.jpg">
+    <link rel="icon" href="icon.jpg" />
   </head>
   <body>
-    <form action="/">
+    <form id="theForm">
       <div class="fieldset">
         <table class="tab-group">
           <tr>
@@ -17,27 +17,38 @@
               <a href="index.html" target="_self">ثبت نام </a>
             </td>
             <td id="login-tab" class="tab">
-              <a href="../index.html" target="_self">ورود</a></td>
+              <a href="../index.html" target="_self">ورود</a>
+            </td>
           </tr>
         </table>
 
-        <div class="input">
-          <input inputmode="tel" maxlength="11" type="tel" placeholder="شماره موبایل" />
+        <div class="input" id="phDiv">
+          <input
+            autofocus
+            id="phInput"
+            inputmode="tel"
+            type="tel"
+            placeholder="شماره موبایل                                          9195698742  (98+) "
+          />
         </div>
 
-        <div class="input">
-          <input type="password" placeholder="رمز عبور" />
+        <div class="input" id="passDiv">
+          <input id="passInput" type="password" placeholder="رمز عبور" />
         </div>
 
-        <div class="input">
-            <input type="password" placeholder="تکرار رمز عبور" />
-          </div>
+        <div class="input" id="rePassDiv">
+          <input
+            id="rePassInput"
+            type="password"
+            placeholder=" تکرار رمز عبور"
+          />
+        </div>
 
         <div>
-          <button class="signup-btn">ثبت نام</button>
+          <button id="btn" class="signup-btn">ثبت نام</button>
         </div>
       </div>
     </form>
-    <script src="../app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

@@ -10,7 +10,8 @@ let lblErrorPass = document.createElement("label");
 lblErrorPh.classList.add("erorr");
 lblErrorPass.classList.add("erorr");
 let message = "";
-let valid = false;
+let validphone = false;
+let validpass = false;
 passDiv.appendChild(lblErrorPass);
 phDiv.appendChild(lblErrorPh);
 btn.addEventListener("click", function () {
@@ -26,7 +27,7 @@ function validation() {
       message = "شماره تلفن باید 11 رقم باشد!";
     else {
       message = "";
-      valid = true;
+      validphone = true;
     }
     lblErrorPh.innerHTML = message;
   }
@@ -37,22 +38,23 @@ function validation() {
       message = "رمز عبور باید 8 رقم باشد!";
     else {
       message = "";
-      valid = true;
+      validpass = true;
     }
     lblErrorPass.innerHTML = message;
   }
   validPhone();
   validPass();
-  function submit() {
-    if (valid == false) {
+  function Submit() {
+    if (validpass == true && validphone == true) {
+      theForm.action = "Chat/index.html";
+      theForm.submit()
+    } else {
       theForm.addEventListener("submit", (e) => {
         e.preventDefault();
       });
-    } else if (valid == true) {
-      theForm.action="Chat/index.html"
     }
   }
-  submit();
+  Submit();
 }
 
 const logintab = document.getElementById("login-tab");

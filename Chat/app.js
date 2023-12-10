@@ -15,8 +15,8 @@ searchBtn.addEventListener("click", function (e) {
   searchCircle.addEventListener("click", searchFunction);
 });
 function searchFunction() {
-  divs = document.querySelectorAll(".menu-item");
-  labels = document.querySelectorAll(".menu-item label");
+  let divs = document.getElementsByClassName(".menu-item");
+  let labels = document.querySelectorAll(".menu-item label");
   const text = searchInput.value.toLowerCase();
   for (let i = 0; i < labels.length; i++) {
     const item = labels[i].textContent;

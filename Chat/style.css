@@ -357,6 +357,8 @@ input:focus {
   justify-content: center;
   margin: auto;
   border-radius: 8px;
+  position: relative;
+  z-index: 100;
 }
 .input {
   width: 90%;
@@ -365,6 +367,7 @@ input:focus {
 }
 .input ::placeholder {
   font-family: BMitra;
+  text-align: right;
 }
 input {
   width: 100%;

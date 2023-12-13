@@ -117,7 +117,7 @@ body {
   color: #a0b3b0;
 }
 .menu-item:hover:not(.title),
-label:hover {
+label:hover:not(#currentContant) {
   cursor: pointer;
   background: rgb(23, 155, 119);
   transition: all 0.5s;

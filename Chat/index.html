@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../normalizer.css" />
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
-    <!-- <script src="inline.js"></script> -->
+    <script src="inline.js"></script>
   </head>
   <body id="body">
     <div class="main">
@@ -146,17 +146,6 @@
       <footer class="footer grid-item">
         <div class="send-div">
           <button
-            id="send-btn"
-            class="btn-icon"
-            style="
-              display: none;
-              background-image: url(images/send-icon.png);
-              width: 55px;
-              height: 55px;
-              margin: 7px 6px 0px 0px;
-            "
-          ></button>
-          <button
             id="micro-btn"
             class="btn-icon"
             style="
@@ -176,13 +165,28 @@
               margin: 8px 0px;
             "
           ></button>
-          <input
-          id="send-input"
-            name="input-message"
-            class="send"
-            type="text"
-            placeholder="پیام..."
-          />
+          <form class="send-form" method="get">
+            <button
+              type="submit"
+              id="send-btn"
+              class="btn-icon"
+              style="
+                display: none;
+                background-image: url(images/send-icon.png);
+                width: 55px;
+                height: 55px;
+                margin: 7px 6px 0px 0px;
+              "
+            ></button>
+            <input
+              id="send-input"
+              name="input-message"
+              class="send"
+              type="text"
+              placeholder="پیام..."
+            />
+          </form>
+
           <button
             id="emoji-btn"
             class="btn-icon"

@@ -27,24 +27,26 @@ function searchFunction() {
 }
 
 //!send message
+let sendForm = document.getElementsByClassName("send-form")[0];
 let snjBtn = document.getElementById("sanjagh-btn");
 let mcpBtn = document.getElementById("micro-btn");
 let sendBtn = document.getElementById("send-btn");
 let messagePart = document.getElementsByClassName("message-part")[0];
 let inputMessage = document.getElementsByName("input-message")[0];
 
+sendForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  send();
+  setTimeout(() => {
+    sendForm.action = "index.php";
+    sendForm.submit();
+    inputMessage.value = "";
+  }, 800);
+});
 inputMessage.addEventListener("keydown", function () {
   snjBtn.style.display = "none";
   mcpBtn.style.display = "none";
   sendBtn.style.display = "block";
-});
-sendBtn.addEventListener("click", function () {
-  send();
-});
-inputMessage.addEventListener("keypress", (e) => {
-  if (e.key == "Enter") {
-    send();
-  }
 });
 function send() {
   let text = inputMessage.value;
@@ -54,7 +56,6 @@ function send() {
     sendBtn.style.display = "none";
     creatMessageDiv(text);
   }
-  inputMessage.value = "";
   snjBtn.style.display = "block";
   mcpBtn.style.display = "block";
   sendBtn.style.display = "none";
@@ -140,109 +141,109 @@ microBtn.addEventListener("mousedown", function () {
   pauseIcon.classList.add("pauseIcon");
   voiceBox.appendChild(playIcon);
 
-  //?
-  const sendDiv = document.getElementsByClassName("send-div")[0];
-  const sendInput = document.getElementById("send-input");
-  sendDiv.removeChild(emjBtn);
-  sendDiv.removeChild(sendInput);
-  sendDiv.removeChild(snjBtn);
-  const text = document.createElement("label");
-  const redMicro = document.createElement("img");
-  redMicro.classList.add("red-micro");
-  redMicro.src = "images/micro-red.png";
-  text.classList.add("text");
-  text.innerHTML = "دکمه را رها کنید تا ضبط پایان یابد!";
-  const timer = document.createElement("label");
-  let realTime;
-  timer.classList.add("timer");
-  sendDiv.appendChild(redMicro);
-  sendDiv.appendChild(text);
-  sendDiv.appendChild(timer);
-  timer.innerHTML = "00:00";
-  let secound = 0;
-  let min = 0;
-  const recordTimer = setInterval(() => {
-    secound++;
-    timer.innerHTML = `0${min}:0${secound}`;
-    if (secound > 9) {
-      timer.innerHTML = `0${min}:${secound}`;
-    }
-    if (secound > 60) {
-      secound = 0;
-      min++;
-      timer.innerHTML = `0${min}:${secound}`;
-    }
-    realTime = `0${min}:0${secound}`;
-  }, 1000);
-  const start = async () => {
-    let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    let recorder = new RecordRTCPromisesHandler(stream, {
-      type: "audio",
+
+const sendDiv = document.getElementsByClassName("send-div")[0];
+const sendInput = document.getElementById("send-input");
+sendDiv.removeChild(emjBtn);
+sendDiv.removeChild(sendInput);
+sendDiv.removeChild(snjBtn);
+const text = document.createElement("label");
+const redMicro = document.createElement("img");
+redMicro.classList.add("red-micro");
+redMicro.src = "images/micro-red.png";
+text.classList.add("text");
+text.innerHTML = "دکمه را رها کنید تا ضبط پایان یابد!";
+const timer = document.createElement("label");
+let realTime;
+timer.classList.add("timer");
+sendDiv.appendChild(redMicro);
+sendDiv.appendChild(text);
+sendDiv.appendChild(timer);
+timer.innerHTML = "00:00";
+let secound = 0;
+let min = 0;
+const recordTimer = setInterval(() => {
+  secound++;
+  timer.innerHTML = `0${min}:0${secound}`;
+  if (secound > 9) {
+    timer.innerHTML = `0${min}:${secound}`;
+  }
+  if (secound > 60) {
+    secound = 0;
+    min++;
+    timer.innerHTML = `0${min}:${secound}`;
+  }
+  realTime = `0${min}:0${secound}`;
+}, 1000);
+const start = async () => {
+  let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  let recorder = new RecordRTCPromisesHandler(stream, {
+    type: "audio",
+  });
+  recorder.startRecording();
+  microBtn.addEventListener("mouseup", async () => {
+    clearInterval(recordTimer);
+    sendDiv.removeChild(redMicro);
+    sendDiv.removeChild(text);
+    sendDiv.removeChild(timer);
+    sendDiv.appendChild(snjBtn);
+    sendDiv.appendChild(sendInput);
+    sendDiv.appendChild(emjBtn);
+    await recorder.stopRecording();
+    let blob = await recorder.getBlob();
+    const recordedUrl = URL.createObjectURL(blob);
+    const wavesurfer = WaveSurfer.create({
+      container: container,
+      waveColor: "#fff",
+      progressColor: "#fff",
+      height: 60,
+      width: 120,
+      url: recordedUrl,
+      cursorColor: "#a0b3b0",
     });
-    recorder.startRecording();
-    microBtn.addEventListener("mouseup", async () => {
-      clearInterval(recordTimer);
-      sendDiv.removeChild(redMicro);
-      sendDiv.removeChild(text);
-      sendDiv.removeChild(timer);
-      sendDiv.appendChild(snjBtn);
-      sendDiv.appendChild(sendInput);
-      sendDiv.appendChild(emjBtn);
-      await recorder.stopRecording();
-      let blob = await recorder.getBlob();
-      const recordedUrl = URL.createObjectURL(blob);
-      const wavesurfer = WaveSurfer.create({
-        container: container,
-        waveColor: "#fff",
-        progressColor: "#fff",
-        height: 60,
-        width: 120,
-        url: recordedUrl,
-        cursorColor: "#a0b3b0",
-      });
-      let playTimer;
-      secound = 0;
-      min = 0;
-      playIcon.addEventListener("click", () => {
-        if (secound == 0) {
-          timer.innerHTML = `00:00`;
+    let playTimer;
+    secound = 0;
+    min = 0;
+    playIcon.addEventListener("click", () => {
+      if (secound == 0) {
+        timer.innerHTML = `00:00`;
+      }
+      wavesurfer.play();
+      voiceBox.removeChild(playIcon);
+      voiceBox.appendChild(pauseIcon);
+      playTimer = setInterval(() => {
+        secound++;
+        timer.innerHTML = `0${min}:0${secound}`;
+        if (secound > 9) {
+          timer.innerHTML = `0${min}:${secound}`;
         }
-        wavesurfer.play();
-        voiceBox.removeChild(playIcon);
-        voiceBox.appendChild(pauseIcon);
-        playTimer = setInterval(() => {
-          secound++;
-          timer.innerHTML = `0${min}:0${secound}`;
-          if (secound > 9) {
-            timer.innerHTML = `0${min}:${secound}`;
-          }
-          if (secound > 60) {
-            secound = 0;
-            min++;
-            timer.innerHTML = `0${min}:${secound}`;
-          }
-        }, 1000);
-      });
-      pauseIcon.addEventListener("click", () => {
-        wavesurfer.pause();
-        voiceBox.removeChild(pauseIcon);
-        voiceBox.appendChild(playIcon);
-        clearInterval(playTimer);
-      });
-      wavesurfer.addEventListener("finish", () => {
-        voiceBox.removeChild(pauseIcon);
-        voiceBox.appendChild(playIcon);
-        clearInterval(playTimer);
-        timer.innerHTML = realTime;
-      });
-      console.log(secound);
-      voiceBox.appendChild(container);
-      timer.classList.add("time");
-      voiceBox.appendChild(timer);
-      if (timer.innerHTML != "00:00") messagePart.appendChild(voiceBox);
+        if (secound > 60) {
+          secound = 0;
+          min++;
+          timer.innerHTML = `0${min}:${secound}`;
+        }
+      }, 1000);
     });
-  };
-  start();
+    pauseIcon.addEventListener("click", () => {
+      wavesurfer.pause();
+      voiceBox.removeChild(pauseIcon);
+      voiceBox.appendChild(playIcon);
+      clearInterval(playTimer);
+    });
+    wavesurfer.addEventListener("finish", () => {
+      voiceBox.removeChild(pauseIcon);
+      voiceBox.appendChild(playIcon);
+      clearInterval(playTimer);
+      timer.innerHTML = realTime;
+    });
+    console.log(secound);
+    voiceBox.appendChild(container);
+    timer.classList.add("time");
+    voiceBox.appendChild(timer);
+    if (timer.innerHTML != "00:00") messagePart.appendChild(voiceBox);
+  });
+};
+start();
 });
 
 //! edit and add box

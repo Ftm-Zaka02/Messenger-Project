@@ -277,13 +277,22 @@ input {
   border-radius: 12px;
   position: relative;
 }
-.send {
+.send-form {
+  display: flex;
+  flex-direction: row;
   width: 93%;
-  height: 85%;
+  height: 88%;
   background-color: inherit;
   border: 0;
-  margin: 2px 15px;
   color: black;
+  /* border: 1px red solid; */
+  margin: 4px;
+}
+.send{
+  background-color: inherit;
+  border: 0;
+  color: black;
+  margin:8px 15px 8px auto;
 }
 input:focus {
   outline: none;

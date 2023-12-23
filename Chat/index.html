@@ -6,9 +6,19 @@
     <title>Chat</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../normalizer.css" />
-    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
-    <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
-    <script src="inline.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script> -->
+    <!-- <script src="inline.js"></script> -->
   </head>
   <body id="body">
     <div class="main">
@@ -165,7 +175,7 @@
               margin: 8px 0px;
             "
           ></button>
-          <form class="send-form" method="get">
+          <form class="send-form" id="formoid">
             <button
               type="submit"
               id="send-btn"
@@ -180,10 +190,10 @@
             ></button>
             <input
               id="send-input"
-              name="input-message"
               class="send"
               type="text"
               placeholder="پیام..."
+              name="msg"
             />
           </form>
 

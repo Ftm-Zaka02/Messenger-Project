@@ -5,15 +5,15 @@
 }
 @font-face {
   font-family: BTitr;
-  src: url(fonts/STITRBD.TTF);
+  src: url(../Fonts/STITRBD.TTF);
 }
 @font-face {
   font-family: BMitra;
-  src: url(fonts/SMITRABD.TTF);
+  src: url(../Fonts/SMITRABD.TTF);
 }
 @font-face {
   font-family:Iransans ;
-  src: url(Fonts/iransans.ttf);
+  src: url(../Fonts/iransans.ttf);
 }
 body {
   direction: rtl;

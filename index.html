@@ -3,54 +3,213 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Form</title>
-    <link rel="stylesheet" href="normalizer.css" />
-    <link rel="stylesheet" href="style.css" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="asset/Styles/chat.css" />
+    <link rel="stylesheet" href="asset/Styles/normalizer.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script> -->
+    <!-- <script src="inline.js"></script> -->
   </head>
-  <body>
-    <form id="theForm">
-      <div class="fieldset">
-        <table class="tab-group">
-          <tr>
-            <td id="signup-tab" class="tab">
-              <a href="SignUp/index.html" target="_self">ثبت نام </a>
-            </td>
-            <td id="login-tab" class="tab tab-active">
-              <a href="index.html" target="_self">ورود</a>
-            </td>
-          </tr>
-        </table>
-
-        <div id="phDiv" class="input">
-          <input
-            id="phInput"
-            autofocus
-            inputmode="tel"
-            type="tel"
-            placeholder="شماره موبایل                                          9195698742  (98+) "
-          />
-        </div>
-
-        <div id="passDiv" class="input">
-          <input id="passInput" type="password" placeholder="رمز عبور" />
-        </div>
-
-        <div class="input">
-          <input id="rCheck" class="checkbox" type="checkbox" checked /><span
-            style="
-              font-size: 20px;
-              font-family: BMitra;
-              color: #a0b3b0;
-              font-weight: bold;
-            "
-            >مرا به خاطر بسپار !</span
-          >
+  <body id="body">
+    <div class="main">
+      <header class="header grid-item">
+        <div class="person-chat">
+          <img class="person-image" src="asset/Images/person.png" />
+          <label id="currentContant"> مخاطب 2 </label>
         </div>
         <div>
-          <button id="btn" class="login-btn" type="submit" >ورود</button>
+          <button
+            id="edit-btn"
+            class="btn-icon"
+            style="background-image: url(asset/Images/edit-icon.png)"
+          ></button>
+          <button
+            class="btn-icon"
+            style="background-image: url(asset/Images/refresh-icon.png)"
+          ></button>
         </div>
+      </header>
+
+      <aside class="menu grid-item">
+        <div class="title">
+          پیام رسان فراوین
+          <div>
+            <button
+              id="search-btn"
+              class="btn-icon"
+              style="background-image: url(asset/Images/search-icon.png)"
+            ></button>
+            <button
+              id="add-btn"
+              class="btn-icon"
+              style="background-image: url(asset/Images/add-icon.png)"
+            ></button>
+            <button
+              class="btn-icon"
+              style="background-image: url(asset/Images/refresh-icon.png)"
+            ></button>
+          </div>
+        </div>
+        <br />
+        <div id="search-div" class="search-div"></div>
+        <div class="menu-item-div contacts" id="menu-item-div">
+          <div class="menu-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label id="0">مخاطب 1</label>
+          </div>
+          <div class="menu-item active-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label id="1">مخاطب 2</label>
+          </div>
+          <div class="menu-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label id="2">مخاطب 3</label>
+          </div>
+          <div class="menu-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label id="3">مخاطب 4</label>
+          </div>
+          <div class="menu-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label id="4">مخاطب 5</label>
+          </div>
+          <div class="menu-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label data="5">مخاطب 6</label>
+          </div>
+          <div class="menu-item">
+            <img class="person-image" src="asset/Images/person.png" />
+            <label id="6">مخاطب 7</label>
+          </div>
+        </div>
+      </aside>
+      <div class="message-part grid-item">
+        <div class="conversation-start">
+          <span class="conversation-start-text">Today</span>
+        </div>
+        <div class="message-part-me">سلام</div>
+        <div class="message-part-you">سلام خوبی؟</div>
+        <div class="message-part-me">قربانت</div>
+        <!-- <div class="message-part-me">چه خبرا چیکار میکنی؟!</div> -->
+        <div class="message-part-you">روی پروژم کار میکنم!</div>
       </div>
-    </form>
-    <script src="app.js"></script>
+      <div id="picker"></div>
+      <!-- edit box -->
+      <form id="editForm">
+        <div id="editBox" class="fieldset">
+          <button class="close"></button>
+          <div class="input">
+            <input
+              inputmode="tel"
+              maxlength="11"
+              type="tel"
+              placeholder="شماره موبایل"
+            />
+          </div>
+
+          <div class="input">
+            <input
+              id="editNameInput"
+              type="text"
+              placeholder="نام و نام خانوادگی"
+            />
+          </div>
+
+          <div>
+            <button class="save-btn">ذخیره</button>
+          </div>
+        </div>
+      </form>
+      <!-- add box -->
+      <form id="addForm">
+        <div id="addBox" class="fieldset">
+          <button class="close"></button>
+          <div class="input">
+            <input
+              inputmode="tel"
+              maxlength="11"
+              type="tel"
+              placeholder="شماره موبایل"
+            />
+          </div>
+
+          <div class="input">
+            <input type="text" placeholder="نام و نام خانوادگی" />
+          </div>
+
+          <div>
+            <button class="add-btn">افزودن مخاطب</button>
+          </div>
+        </div>
+      </form>
+
+      <footer class="footer grid-item">
+        <div class="send-div">
+          <button
+            id="micro-btn"
+            class="btn-icon"
+            style="
+              background-image: url(asset/Images/microStop-icon.png);
+              width: 60px;
+              height: 60px;
+              margin: 3px 6px 0px 0px;
+            "
+          ></button>
+          <button
+            id="sanjagh-btn"
+            class="btn-icon"
+            style="
+              background-image: url(asset/Images/sanjagh-icon.png);
+              width: 52px;
+              height: 52px;
+              margin: 8px 0px;
+            "
+          ></button>
+          <form class="send-form" id="formoid">
+            <button
+              type="submit"
+              id="send-btn"
+              class="btn-icon"
+              style="
+                display: none;
+                background-image: url(asset/Images/send-icon.png);
+                width: 55px;
+                height: 55px;
+                margin: 7px 6px 0px 0px;
+              "
+            ></button>
+            <input
+              id="send-input"
+              class="send"
+              type="text"
+              placeholder="پیام..."
+              name="msg"
+            />
+          </form>
+
+          <button
+            id="emoji-btn"
+            class="btn-icon"
+            style="
+              background-image: url(asset/Images/emoji-icon.png);
+              width: 60px;
+              height: 55px;
+              margin: 4px 0px 4px 6px;
+            "
+          ></button>
+        </div>
+      </footer>
+      <script src="asset/Js/chat.js" type="module"></script>
+    </div>
   </body>
 </html>

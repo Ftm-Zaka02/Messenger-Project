@@ -1,4 +1,4 @@
-import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
+// import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
 const body = document.getElementById("body");
 const searchBtn = document.getElementById("search-btn");
 const searchDiv = document.getElementById("search-div");
@@ -27,13 +27,11 @@ function searchFunction() {
 }
 
 //!send message
-let sendForm = document.getElementsByClassName("send-form")[0];
 let snjBtn = document.getElementById("sanjagh-btn");
 let mcpBtn = document.getElementById("micro-btn");
 let sendBtn = document.getElementById("send-btn");
 let messagePart = document.getElementsByClassName("message-part")[0];
 let inputMessage = document.getElementsByName("msg")[0];
-
 
 function send() {
   let text = inputMessage.value;
@@ -60,24 +58,24 @@ inputMessage.addEventListener("keydown", function () {
   mcpBtn.style.display = "none";
   sendBtn.style.display = "block";
 });
+
 $(document).ready(function () {
   $("#formoid").submit(function (event) {
     event.preventDefault();
-    send()
     var values = $(this).serialize();
-    setTimeout(() => {
-      $.ajax({
-        type: "get",
-        url: "index.php",
-        data: values,
-        success: function (res) {
-          alert("Sending Was Successfull! \n" + "Your Message is :  " + res);
-          inputMessage.value=""
-        },
-      });
-    }, 800);
+    $.ajax({
+      type: "get",
+      url: "asset/Php/index.php",
+      data: values,
+      success: function (res) {
+        alert("Sending Was Successfull! \n" + "Your Message is :  " + res);
+        send();
+        inputMessage.value=""
+      },
+    });
   });
 });
+
 
 
 
@@ -107,7 +105,7 @@ function uploadMessage(num) {
           }
         });
 
-      fetch("../Jsons/theirMessage.json")
+      fetch("../../Jsons/theirMessage.json")
         .then((response) => {
           return response.json();
         })

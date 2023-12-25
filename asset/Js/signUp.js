@@ -1,19 +1,24 @@
 const theForm = document.getElementById("theForm");
-const rCheck = document.getElementById("rCheck");
-const btn = document.getElementById("btn");
 let phInput = document.getElementById("phInput");
 let passInput = document.getElementById("passInput");
+let rePassInput = document.getElementById("rePassInput");
+const btn = document.getElementById("btn");
 const passDiv = document.getElementById("passDiv");
+const rePassDiv = document.getElementById("rePassDiv");
 const phDiv = document.getElementById("phDiv");
 let lblErrorPh = document.createElement("label");
 let lblErrorPass = document.createElement("label");
+let lblErrorRePass = document.createElement("label");
 lblErrorPh.classList.add("erorr");
 lblErrorPass.classList.add("erorr");
+lblErrorRePass.classList.add("erorr");
 let message = "";
-let validphone = false;
-let validpass = false;
+let validphone=false
+let validpass=false
+let validrepass=false
 passDiv.appendChild(lblErrorPass);
 phDiv.appendChild(lblErrorPh);
+rePassDiv.appendChild(lblErrorRePass);
 btn.addEventListener("click", function () {
   validation();
 });
@@ -25,10 +30,10 @@ function validation() {
     else if (isNaN(phInput.value)) message = "لطفا عدد وارد کنید!";
     else if (phInput.value.length < 11 || phInput.value.length > 11)
       message = "شماره تلفن باید 11 رقم باشد!";
-    else {
-      message = "";
-      validphone = true;
-    }
+      else {
+        message = "";
+        validphone = true;
+      }
     lblErrorPh.innerHTML = message;
   }
   function validPass() {
@@ -36,17 +41,31 @@ function validation() {
       message = "لطفا فیلد را پر کنید!";
     else if (passInput.value.length > 8 || passInput.value.length < 8)
       message = "رمز عبور باید 8 رقم باشد!";
-    else {
-      message = "";
-      validpass = true;
-    }
+      else {
+        message = "";
+        validpass = true;
+      }
     lblErrorPass.innerHTML = message;
+  }
+  function validRePass() {
+    if (rePassInput.value == "" || rePassInput.value == null)
+      message = "لطفا فیلد را پر کنید!";
+    else if (rePassInput.value.length > 8 || rePassInput.value.length < 8)
+      message = "رمز عبور باید 8 رقم باشد!";
+    else if (rePassInput.value != passInput.value)
+      message = "رمز عبور و تکرار رمز باید برابر باشد!";
+      else {
+        message = "";
+        validrepass = true;
+      }
+    lblErrorRePass.innerHTML = message;
   }
   validPhone();
   validPass();
+  validRePass();
   function Submit() {
-    if (validpass == true && validphone == true) {
-      theForm.action = "Chat/index.html";
+    if (validpass == true && validphone == true && validrepass==true) {
+      theForm.action = "../../index.html";
       theForm.submit()
     } else {
       theForm.addEventListener("submit", (e) => {
@@ -56,7 +75,6 @@ function validation() {
   }
   Submit();
 }
-
 const logintab = document.getElementById("login-tab");
 const signuptab = document.getElementById("signup-tab");
 if (logintab.classList[1] == "tab-active") {

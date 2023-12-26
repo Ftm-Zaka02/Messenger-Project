@@ -46,11 +46,13 @@ function send() {
   sendBtn.style.display = "none";
 }
 function creatMessageDiv(text) {
-  const textMessage = document.createTextNode(text);
-  const newMessage = document.createElement("div");
-  newMessage.classList.add("message-part-me");
-  newMessage.appendChild(textMessage);
-  messagePart.appendChild(newMessage);
+  if (text.length > 0) {
+    const textMessage = document.createTextNode(text);
+    const newMessage = document.createElement("div");
+    newMessage.classList.add("message-part-me");
+    newMessage.appendChild(textMessage);
+    messagePart.appendChild(newMessage);
+  }
 }
 
 inputMessage.addEventListener("keydown", function () {
@@ -68,16 +70,31 @@ $(document).ready(function () {
       url: "asset/Php/index.php",
       data: values,
       success: function (res) {
-        alert("Sending Was Successfull! \n" + "Your Message is :  " + res);
+        alert(
+          "Sending Was Successfull! \n" + "Your Message is :  " + res + "\n"
+        );
         send();
-        inputMessage.value=""
+        inputMessage.value = "";
       },
     });
   });
 });
 
+//! fetch data from database
 
-
+$("#refresh-btn").click(() => {
+  $.ajax({
+    type: "get",
+    url: "asset/Php/mySQL/fetch.php",
+    dataType: "json",
+    success: function (data) {
+      for (let i = 0; i < data.length; i++) {
+        let text = data[i];
+        creatMessageDiv(text);
+      }
+    },
+  });
+});
 
 //! change message with contants
 let contacts = document.getElementsByClassName("contacts")[0];

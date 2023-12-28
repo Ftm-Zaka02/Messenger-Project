@@ -70,10 +70,10 @@ $(document).ready(function () {
       url: "assets/Php/index.php",
       data: values,
       success: function (res) {
-        alert(
-          "Sending Was Successfull! \n" + "Your Message is :  " + res + "\n"
-        );
-        send();
+        if (res == "New record created successfully") {
+          alert("Your Message is :  " + res + "\n");
+          send();
+        }
         inputMessage.value = "";
       },
     });
@@ -95,7 +95,6 @@ $("#refresh-btn").click(() => {
     },
   });
 });
-
 
 //!emoji
 // const emjBtn = document.getElementById("emoji-btn");

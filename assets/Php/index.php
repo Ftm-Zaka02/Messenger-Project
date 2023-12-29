@@ -1,6 +1,6 @@
 <?php
 
-include 'mySQL/connection.php';
+include 'mySQL/connection.php,mySql/insert.php';
 
 $message = $_GET['msg'];
 
@@ -13,4 +13,3 @@ if ($message and $message != "") {
 }
 
 $conn->close();
-

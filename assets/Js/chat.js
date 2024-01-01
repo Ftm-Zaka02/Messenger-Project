@@ -67,13 +67,12 @@ $(document).ready(function () {
     var values = $(this).serialize();
     $.ajax({
       type: "get",
-      url: "asset/Php/index.php",
+      url: "assets/Php/index.php",
       data: values,
       success: function (res) {
-        alert(
-          "Sending Was Successfull! \n" + "Your Message is :  " + res + "\n"
-        );
+        alert("Your Message is :  " + res + "\n");
         send();
+
         inputMessage.value = "";
       },
     });
@@ -85,7 +84,7 @@ $(document).ready(function () {
 $("#refresh-btn").click(() => {
   $.ajax({
     type: "get",
-    url: "asset/Php/mySQL/fetch.php",
+    url: "assets/Php/mySQL/fetch.php",
     dataType: "json",
     success: function (data) {
       for (let i = 0; i < data.length; i++) {
@@ -95,46 +94,6 @@ $("#refresh-btn").click(() => {
     },
   });
 });
-
-//! change message with contants
-let contacts = document.getElementsByClassName("contacts")[0];
-contacts.addEventListener("click", function (e) {
-  let elm = e.target.id;
-  uploadMessage(elm);
-});
-
-function uploadMessage(num) {
-  for (let i = 0; i < contacts.children.length - 1; i++) {
-    if (num == i) {
-      document
-        .getElementsByClassName("active-item")[0]
-        .classList.remove("active-item");
-      contacts.children[i].classList.add("active-item");
-
-      fetch("../Jsons/myMessage.json")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let messageDivs = document.getElementsByClassName("message-part-me");
-          for (let j = 0; j < messageDivs.length; j++) {
-            messageDivs[j].innerHTML = data[i][j];
-          }
-        });
-
-      fetch("../../Jsons/theirMessage.json")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let messageDivs = document.getElementsByClassName("message-part-you");
-          for (let j = 0; j < messageDivs.length; j++) {
-            messageDivs[j].innerHTML = data[i][j];
-          }
-        });
-    }
-  }
-}
 
 //!emoji
 // const emjBtn = document.getElementById("emoji-btn");

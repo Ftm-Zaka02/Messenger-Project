@@ -2,8 +2,8 @@
 
 include 'connection.php';
 
-$conn = connect("localhost", "root", "", "chat");
+$data = selectData();
 
-echo json_encode(selectData($conn));
+echo json_encode($data);
 
-$conn->close();
+exit();

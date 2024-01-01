@@ -88,7 +88,7 @@ $("#refresh-btn").click(() => {
     dataType: "json",
     success: function (data) {
       for (let i = 0; i < data.length; i++) {
-        let text = data[i];
+        let text = data[i]["messagetext"];
         creatMessageDiv(text);
       }
     },

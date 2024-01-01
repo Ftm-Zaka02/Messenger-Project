@@ -70,16 +70,8 @@ $(document).ready(function () {
       url: "assets/Php/index.php",
       data: values,
       success: function (res) {
-<<<<<<< HEAD
         alert("Your Message is :  " + res + "\n");
         send();
-
-=======
-        if (res == "New record created successfully") {
-          alert("Your Message is :  " + res + "\n");
-          send();
-        }
->>>>>>> c367c0b42f3326e8ff7f2c8947428eda56f2cc8b
         inputMessage.value = "";
       },
     });

@@ -1,6 +1,6 @@
 <?php
 
-<<<<<<< HEAD
+
 require 'rb-mysql.php';
 R::setup(
     'mysql:host=localhost;dbname=chat',
@@ -36,15 +36,4 @@ function selectData()
     $data = R::getAll('SELECT * FROM message');
     return $data;
     R::close();
-=======
-
-function connect($servername, $username, $password, $dbname)
-{
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    return $conn;
->>>>>>> c367c0b42f3326e8ff7f2c8947428eda56f2cc8b
 }

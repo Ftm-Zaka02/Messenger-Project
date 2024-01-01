@@ -3,12 +3,11 @@
 include 'mySQL/connection.php';
 
 $message = $_GET['msg'];
-
-echo $message;
+$message = strip_tags(trim($message));
 
 $conn = connect("localhost", "root", "", "chat");
-if ($message and $message != "") {
-    insertData($conn, $message,'message');
+if (!empty($message)) {
+    insertData($conn, $message, 'message');
 }
 
 $conn->close();
